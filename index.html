@@ -116,6 +116,29 @@
       -webkit-text-stroke: 1px rgba(238,244,255,.34);
     }
     .hero-copy { margin-top: 28px; color: var(--muted); max-width: 610px; font-size: 16px; }
+    .verse-box {
+      margin-top: 24px;
+      padding: 16px 18px;
+      border: 1px solid rgba(94,231,255,.22);
+      border-left: 3px solid var(--cyan);
+      background: rgba(94,231,255,.06);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(94,231,255,.08);
+      max-width: 620px;
+    }
+    .verse-box p {
+      color: var(--text);
+      font: 600 15px/1.7 "JetBrains Mono", monospace;
+      letter-spacing: 0.02em;
+    }
+    .verse-box small {
+      display: block;
+      margin-top: 8px;
+      color: var(--cyan);
+      font: 600 10px "JetBrains Mono";
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
     .hero-actions { display:flex; gap:12px; margin-top:34px; flex-wrap:wrap; }
     .btn {
       display:inline-flex; align-items:center; gap:9px; padding:13px 17px;
@@ -311,8 +334,11 @@
           <h1>GIA BAO<br><span class="ghost">NGUYEN</span></h1>
           <p class="hero-copy">
             I'm a Catholic, sophomore CS student who loves trying new things and grinding on the basketball court.
-            <br>#ballislive 
           </p>
+          <div class="verse-box">
+            <p>"No trial has come to you but what is human..."</p>
+            <small>1 Cr 10,13</small>
+          </div>
           <div class="hero-actions">
             <a class="btn primary" href="#projects">VIEW PROJECTS ↗</a>
             <a class="btn" href="#contact">LET'S CONNECT →</a>
@@ -357,11 +383,9 @@
           <div class="terminal-body">
             {<br>
             &nbsp;&nbsp;<span class="key">"name"</span>: <span class="str">"Nguyen Gia Bao"</span>,<br>
-            &nbsp;&nbsp;<span class="key">"focus"</span>: <span class="str">"Information Systems / Data"</span>,<br>
-            &nbsp;&nbsp;<span class="key">"education"</span>: <span class="str">"PTIT — Information Technology"</span>,<br>
-            &nbsp;&nbsp;<span class="key">"languages"</span>: [<span class="str">"Vietnamese"</span>, <span class="str">"English — IELTS 7.0"</span>, <span class="str">"Japanese — N3 goal"</span>],<br>
-            &nbsp;&nbsp;<span class="key">"interests"</span>: [<span class="str">"Data Engineering"</span>, <span class="str">"Systems"</span>, <span class="str">"Creative Tech"</span>],<br>
-            &nbsp;&nbsp;<span class="key">"mindset"</span>: <span class="purple">"learn → build → share → repeat"</span><br>
+            &nbsp;&nbsp;<span class="key">"focus"</span>: <span class="str">"God / Family / Future"</span>,<br>
+            &nbsp;&nbsp;<span class="key">"education"</span>: <span class="str">"PTIT — Computer Science"</span>,<br>
+            &nbsp;&nbsp;<span class="key">"interests"</span>: [<span class="str">"Basketball"</span>, <span class="str">"Vibe coding"</span>, <span class="str">"Hanging"</span>],<br>
             }
           </div>
         </div>
