@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Nguyen Gia Bao — technology student, builder and church volunteer." />
   <title>bvro.ngxn</title>
+  <link rel="icon" type="image/png" href="assets/—Pngtree—instagram social media icon vector_8704818.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,9 +92,6 @@
       padding: 9px 12px; border-radius: 10px; color: var(--muted);
       font: 500 12px "JetBrains Mono"; transition: .25s ease;
     }
-    nav a:hover, nav a.active { color: var(--text); background: rgba(255,255,255,.06); }
-    .nav-status { display:flex; align-items:center; gap:8px; font: 500 11px "JetBrains Mono"; color: var(--muted); }
-    .dot { width:7px; height:7px; border-radius:50%; background:var(--lime); box-shadow:0 0 14px var(--lime); }
 
     section { padding: 120px 0; position: relative; }
     .hero { min-height: 100vh; display:grid; place-items:center; padding-top: 150px; }
@@ -167,7 +165,32 @@
         linear-gradient(145deg, #151e29, #090c11);
       border:1px solid var(--line); box-shadow:var(--shadow);
     }
-    .portrait img { width:100%; height:100%; object-fit:cover; }
+    .portrait-track { width:100%; height:100%; display:flex; touch-action:pan-y; transition:transform .75s cubic-bezier(.2,.8,.2,1); }
+    .portrait-slide {
+      min-width:100%; height:100%; position:relative; opacity:0; transform:scale(1.08);
+      transition:opacity .7s ease, transform .9s cubic-bezier(.2,.8,.2,1);
+    }
+    .portrait-slide.active { opacity:1; transform:scale(1); }
+    .portrait-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+    .portrait-slide::after {
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:linear-gradient(160deg, rgba(94,231,255,.12), transparent 42%, rgba(7,9,13,.35));
+    }
+    .portrait-control {
+      position:absolute; z-index:2; top:50%; width:38px; height:38px; border:1px solid rgba(255,255,255,.25);
+      border-radius:50%; background:rgba(7,9,13,.55); color:var(--text); font-size:22px; line-height:1;
+      backdrop-filter:blur(10px); cursor:pointer; transform:translateY(-50%); transition:.25s ease;
+    }
+    .portrait-control:hover { background:var(--cyan); color:#061016; border-color:var(--cyan); }
+    .portrait-control.prev { left:14px; }
+    .portrait-control.next { right:14px; }
+    .portrait-dots {
+      position:absolute; z-index:2; bottom:17px; left:50%; display:flex; gap:7px; transform:translateX(-50%);
+      padding:7px 10px; border:1px solid rgba(255,255,255,.14); border-radius:20px; background:rgba(7,9,13,.5); backdrop-filter:blur(10px);
+    }
+    .portrait-dot { width:7px; height:7px; padding:0; border:0; border-radius:50%; background:rgba(255,255,255,.4); cursor:pointer; transition:.3s ease; }
+    .portrait-dot.active { width:22px; border-radius:8px; background:var(--cyan); }
+    .portrait-status { position:absolute; z-index:2; top:16px; left:17px; color:var(--text); font:600 10px "JetBrains Mono"; letter-spacing:.12em; text-shadow:0 1px 8px #000; }
     .portrait-placeholder {
       height:100%; display:grid; place-items:center; text-align:center; padding:30px;
       color:var(--muted); font:500 12px "JetBrains Mono";
@@ -273,7 +296,8 @@
     .contact h2 { max-width:850px; margin-inline:auto; }
     .contact-sub { max-width:600px; margin:22px auto 30px; color:var(--muted); }
     .contact-links { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; }
-    .contact-link { padding:13px 17px; border:1px solid var(--line); border-radius:12px; font:500 11px "JetBrains Mono"; transition:.25s; }
+    .contact-link { display:inline-flex; align-items:center; gap:9px; padding:13px 17px; border:1px solid var(--line); border-radius:12px; font:500 11px "JetBrains Mono"; transition:.25s; }
+    .contact-link svg { width:17px; height:17px; fill:currentColor; flex:0 0 auto; }
     .contact-link:hover { background:rgba(94,231,255,.07); border-color:rgba(94,231,255,.3); transform:translateY(-3px); }
     footer { border-top:1px solid var(--line); padding:25px 0; color:var(--muted); font:500 10px "JetBrains Mono"; }
     footer .container { display:flex; justify-content:space-between; gap:20px; }
@@ -286,6 +310,73 @@
     .floating-card { animation:float 4s ease-in-out infinite; }
     .fc2 { animation-delay:-1.5s; }
     .fc3 { animation-delay:-3s; }
+    
+    /* --- EDUCATION CREATIVE CARDS --- */
+    .edu-card {
+      padding: 0; /* Ghi đè padding mặc định của story-card */
+      display: flex;
+      flex-direction: column;
+    }
+    .edu-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .edu-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15; /* Làm mờ để không đè chữ */
+      filter: grayscale(80%) contrast(1.2); /* Chuyển ám xám để hợp tông dark */
+      transition: transform 0.8s ease, opacity 0.4s ease;
+    }
+    .edu-card:hover .edu-bg img {
+      transform: scale(1.08); /* Zoom nhẹ ảnh nền khi hover */
+      opacity: 0.35;
+    }
+    .edu-content {
+      position: relative;
+      z-index: 1;
+      padding: 30px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Đẩy logo lên trên, text xuống dưới */
+      background: linear-gradient(to bottom, rgba(7,9,13,0.2) 0%, rgba(7,9,13,0.95) 90%);
+    }
+    .edu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 30px;
+    }
+    .edu-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(13, 17, 24, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 15px rgba(94,231,255,0.05);
+      display: grid;
+      place-items: center;
+      transition: 0.4s ease;
+    }
+    .edu-card:hover .edu-logo {
+      border-color: var(--cyan);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 25px rgba(94,231,255,0.25);
+    }
+    .edu-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .edu-content h3 {
+      margin: 0 0 8px; /* Tinh chỉnh lại khoảng cách chữ */
+    }
 
     @media (max-width: 900px) {
       nav ul { display:none; }
@@ -323,7 +414,7 @@
       <li><a href="#languages">LANGUAGES</a></li>
       <li><a href="#contact">CONTACT</a></li>
     </ul>
-    <div class="nav-status"><i class="dot"></i> AVAILABLE</div>
+   
   </nav>
 
   <main id="top">
@@ -347,16 +438,16 @@
 
         <div class="portrait-wrap reveal">
           <div class="portrait">
-            <!-- Replace assets/portrait.png with your transparent-background portrait -->
-            <img src="assets/portrait.png" alt="Portrait of Nguyen Gia Bao"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-            <div class="portrait-placeholder" style="display:none;">
-              <div>
-                <strong>YOUR PORTRAIT</strong>
-                Put your removed-background photo here:<br>
-                <span class="accent">assets/portrait.png</span>
-              </div>
+            <div class="portrait-track" aria-live="polite">
+              <div class="portrait-slide active"><img src="assets/portrait.png" alt="Portrait of Nguyen Gia Bao"></div>
+              <div class="portrait-slide"><img src="assets/1787930811700_2062869539153160763_7772012305005979200_eeb10d76672adc81b33c8caf4ef4ca98.jpg"></div>
+              <div class="portrait-slide"><img src="assets/1787930811738_2062869539153160763_7772012305005979200_0e5f6f806b318f2c74bf960c672daf4f.jpg" alt="Casual portrait of Nguyen Gia Bao"></div>
+              <div class="portrait-slide"><img src="assets/1787930811756_2062869539153160763_7772012305005979200_997ae15d75f9fb9a4c38a45112b16f81.jpg" alt="Portrait of Nguyen Gia Bao outdoors"></div>
             </div>
+            <button class="portrait-control prev" type="button" aria-label="Previous portrait">‹</button>
+            <button class="portrait-control next" type="button" aria-label="Next portrait">›</button>
+            <div class="portrait-status" aria-live="polite">01 / 04</div>
+            <div class="portrait-dots" role="tablist" aria-label="Portrait gallery"></div>
           </div>
           <div class="floating-card fc1">DATA / CODE</div>
           <div class="floating-card fc2">PTIT // HANOI</div>
@@ -369,7 +460,7 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-label">01 / PROFILE</div>
+            <div class="section-label">/PROFILE</div>
             <h2>About me.</h2>
           </div>
           <p class="section-intro">A compact snapshot of the person behind the commits.</p>
@@ -396,7 +487,7 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-label">02 / STORY</div>
+            <div class="section-label">/STORY</div>
             <h2>Two worlds.<br>One purpose.</h2>
           </div>
           <p class="section-intro">Technology gives me tools. Community gives those tools a reason to matter.</p>
@@ -430,7 +521,7 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-label">03 / LIFE LOG</div>
+            <div class="section-label">/LIFE LOG</div>
             <h2>Beyond the code.</h2>
           </div>
           <p class="section-intro">Replace these images with your real study, project, event, and volunteering photos.</p>
@@ -469,7 +560,7 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-label">04 / PROJECT LOG</div>
+            <div class="section-label">/PROJECT LOG</div>
             <h2>Built over time.</h2>
           </div>
           <p class="section-intro">Projects appear chronologically — turning the portfolio into a visual record of growth.</p>
@@ -530,29 +621,63 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-label">05 / EDUCATION</div>
+            <div class="section-label">/EDUCATION</div>
             <h2>Academic journey.</h2>
           </div>
-          <p class="section-intro">Focused on technology, systems, and the practical skills needed to build real-world solutions.</p>
+          
         </div>
 
         <div class="story-grid">
-          <article class="story-card reveal">
-            <div class="story-num">01 — CURRENT PROGRAM</div>
-            <h3>PTIT</h3>
-            <p>
-              Studying Information Technology with a growing interest in data, systems, and software engineering.
-              The curriculum is helping me build both a technical base and a practical mindset for solving problems.
-            </p>
+          <!-- CARD 1: CẤP 3 NHÂN CHÍNH -->
+          <article class="story-card edu-card reveal">
+            <!-- Hình nền sáng tạo (có thể thay link ảnh) -->
+            <div class="edu-bg">
+              <img src="assets/images.jpg" alt="Highschool memory">
+            </div>
+            
+            <div class="edu-content">
+              <div class="edu-top">
+                <div class="story-num">2022 - 2025</div>
+                <!-- Vị trí Logo trường -->
+                <div class="edu-logo">
+                  <!-- Bạn hãy thay URL logo thật của trường Nhân Chính vào đây (ưu tiên file PNG không nền) -->
+                  <img src="assets/images.jpg" alt="Nhan Chinh Logo">
+                </div>
+              </div>
+              
+              <div class="edu-text">
+                <h3>NHAN CHINH HIGHSCHOOL</h3>
+                <p>
+                  GPA 9.12 <br> First time taking IELTS
+                </p>
+              </div>
+            </div>
           </article>
-
-          <article class="story-card reveal">
-            <div class="story-num">02 — FOCUS</div>
-            <h3>Technology + application</h3>
-            <p>
-              My academic path is centered on understanding how software, data, and digital systems work together,
-              and applying those ideas to real projects, team work, and meaningful tools for people.
-            </p>
+    
+          <!-- CARD 2: ĐẠI HỌC PTIT -->
+          <article class="story-card edu-card reveal">
+            <!-- Hình nền sáng tạo -->
+            <div class="edu-bg">
+              <img src="assets/Logo_PTIT_University.png">
+            </div>
+            
+            <div class="edu-content">
+              <div class="edu-top">
+                <div class="story-num">2025 - Now</div>
+                <!-- Vị trí Logo trường -->
+                <div class="edu-logo">
+                  <!-- Bạn hãy thay URL logo thật của PTIT vào đây (ưu tiên file PNG không nền) -->
+                  <img src="assets/Logo_PTIT_University.png" alt="PTIT Logo">
+                </div>
+              </div>
+              
+              <div class="edu-text">
+                <h3>POSTS AND TELECOMMUNICATION INSTITUTE OF TECHNOLOGY</h3>
+                <p>
+                  Computer Science<br>CPA 3.61
+                </p>
+              </div>
+            </div>
           </article>
         </div>
       </div>
@@ -562,7 +687,7 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <div class="section-label">06 / LANGUAGES</div>
+            <div class="section-label">/LANGUAGES</div>
             <h2>Communication stack.</h2>
           </div>
           <p class="section-intro">Language is another interface — between people, cultures, and ideas.</p>
@@ -578,16 +703,28 @@
 
     <section id="contact" class="contact">
       <div class="container reveal">
-        <div class="section-label">07 / CONTACT</div>
+        <div class="section-label">/CONTACT</div>
         <h2>Let's build something<br><span class="accent">worth remembering.</span></h2>
-        <p class="contact-sub">Whether it's a project, an internship opportunity, or simply a good conversation about technology — feel free to reach out.</p>
+        <p class="contact-sub">Feel free to reach out!</p>
 
         <div class="contact-links">
           <!-- Replace the # values with your real profiles. -->
-          <a class="contact-link" href="#" target="_blank" rel="noopener">GITHUB ↗</a>
-          <a class="contact-link" href="#" target="_blank" rel="noopener">FACEBOOK ↗</a>
-          <a class="contact-link" href="#" target="_blank" rel="noopener">INSTAGRAM ↗</a>
-          <a class="contact-link" href="mailto:your.email@gmail.com">GMAIL ↗</a>
+          <a class="contact-link" href="https://github.com/ngb2604" target="_blank" rel="noopener" aria-label="GitHub profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.49.998.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            GITHUB
+          </a>
+          <a class="contact-link" href="https://www.facebook.com/ngb2604/" target="_blank" rel="noopener" aria-label="Facebook profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.973h-1.514c-1.491 0-1.956.93-1.956 1.887v2.26h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073"/></svg>
+            FACEBOOK
+          </a>
+          <a class="contact-link" href="https://www.instagram.com/bvro.ngxn/" target="_blank" rel="noopener" aria-label="Instagram profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2m-.2 2A3.55 3.55 0 0 0 4 7.55v8.9A3.55 3.55 0 0 0 7.55 20h8.9A3.55 3.55 0 0 0 20 16.45v-8.9A3.55 3.55 0 0 0 16.45 4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6m5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5"/></svg>
+            INSTAGRAM
+          </a>
+          <a class="contact-link" href="ngb2604@gmail.com" aria-label="Send an email">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+            GMAIL
+          </a>
         </div>
       </div>
     </section>
@@ -611,6 +748,59 @@
       });
     }, { threshold: .12 });
     document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // Portrait carousel
+    const portrait = document.querySelector(".portrait");
+    const portraitTrack = portrait.querySelector(".portrait-track");
+    const portraitSlides = [...portrait.querySelectorAll(".portrait-slide")];
+    const portraitDots = portrait.querySelector(".portrait-dots");
+    const portraitStatus = portrait.querySelector(".portrait-status");
+    let portraitIndex = 0;
+    let portraitTimer;
+    let portraitStartX = 0;
+
+    portraitSlides.forEach((_, index) => {
+      const dot = document.createElement("button");
+      dot.className = "portrait-dot";
+      dot.type = "button";
+      dot.setAttribute("role", "tab");
+      dot.setAttribute("aria-label", `Show portrait ${index + 1}`);
+      dot.addEventListener("click", () => showPortrait(index));
+      portraitDots.append(dot);
+    });
+
+    function showPortrait(index) {
+      portraitIndex = (index + portraitSlides.length) % portraitSlides.length;
+      portraitTrack.style.transform = `translateX(-${portraitIndex * 100}%)`;
+      portraitSlides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === portraitIndex));
+      [...portraitDots.children].forEach((dot, dotIndex) => {
+        const active = dotIndex === portraitIndex;
+        dot.classList.toggle("active", active);
+        dot.setAttribute("aria-selected", active);
+      });
+      portraitStatus.textContent = `${String(portraitIndex + 1).padStart(2, "0")} / ${String(portraitSlides.length).padStart(2, "0")}`;
+    }
+
+    function startPortraitAutoplay() {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      clearInterval(portraitTimer);
+      portraitTimer = setInterval(() => showPortrait(portraitIndex + 1), 5000);
+    }
+
+    portrait.querySelector(".prev").addEventListener("click", () => { showPortrait(portraitIndex - 1); startPortraitAutoplay(); });
+    portrait.querySelector(".next").addEventListener("click", () => { showPortrait(portraitIndex + 1); startPortraitAutoplay(); });
+    portrait.addEventListener("mouseenter", () => clearInterval(portraitTimer));
+    portrait.addEventListener("mouseleave", startPortraitAutoplay);
+    portrait.addEventListener("focusin", () => clearInterval(portraitTimer));
+    portrait.addEventListener("focusout", startPortraitAutoplay);
+    portraitTrack.addEventListener("touchstart", event => { portraitStartX = event.changedTouches[0].screenX; }, { passive:true });
+    portraitTrack.addEventListener("touchend", event => {
+      const distance = event.changedTouches[0].screenX - portraitStartX;
+      if (Math.abs(distance) > 45) showPortrait(portraitIndex + (distance < 0 ? 1 : -1));
+      startPortraitAutoplay();
+    }, { passive:true });
+    showPortrait(0);
+    startPortraitAutoplay();
 
     // Active navigation
     const sections = [...document.querySelectorAll("section[id]")];
