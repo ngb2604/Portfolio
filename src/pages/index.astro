@@ -1,0 +1,320 @@
+﻿---
+import "../styles/global.css";
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nguyen Gia Bao &mdash; technology student, builder and church volunteer." />
+  <meta name="theme-color" content="#07090d" />
+  <title>bvro.ngxn</title>
+  <link rel="icon" type="image/png" href="/assets/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+  <div class="noise"></div>
+
+  <nav>
+    <a class="brand" href="#top">NG<span>B</span> &lt;3 DC<span>T</span></a>
+    <ul>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#education">EDUCATION</a></li>
+      <li><a href="#languages">LANGUAGES</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+   
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">ABOUT ME // TECH STUDENT</div>
+          <h1>GIA BAO<br><span class="ghost">NGUYEN</span></h1>
+          <!-- <p class="hero-copy">
+            I'm a Catholic, sophomore CS student who loves trying new things and grinding on the basketball court.
+          </p> -->
+          <div class="verse-box">
+            <p>"No trial has come to you but what is human..."</p>
+            <small>1 Cr 10,13</small>
+          </div>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">VIEW PROJECTS &#8599;</a>
+            <a class="btn" href="#contact">LET'S CONNECT &#8594;</a>
+          </div>
+        </div>
+
+        <div class="portrait-wrap reveal">
+          <div class="portrait">
+            <div class="portrait-track" aria-live="polite">
+              <div class="portrait-slide active"><img src="assets/portrait.png" alt="Portrait of Nguyen Gia Bao"></div>
+              <div class="portrait-slide"><img src="assets/1787930811700_2062869539153160763_7772012305005979200_eeb10d76672adc81b33c8caf4ef4ca98.jpg"></div>
+              <div class="portrait-slide"><img src="assets/1787930811738_2062869539153160763_7772012305005979200_0e5f6f806b318f2c74bf960c672daf4f.jpg" alt="Casual portrait of Nguyen Gia Bao"></div>
+              <div class="portrait-slide"><img src="assets/1787930811756_2062869539153160763_7772012305005979200_997ae15d75f9fb9a4c38a45112b16f81.jpg" alt="Portrait of Nguyen Gia Bao outdoors"></div>
+            </div>
+            <button class="portrait-control prev" type="button" aria-label="Previous portrait">&#8249;</button>
+            <button class="portrait-control next" type="button" aria-label="Next portrait">&#8250;</button>
+            <div class="portrait-status" aria-live="polite">01 / 04</div>
+            <div class="portrait-dots" role="tablist" aria-label="Portrait gallery"></div>
+          </div>
+          <div class="floating-card fc1">DATA / CODE</div>
+          <div class="floating-card fc2">PTIT // HANOI</div>
+          <div class="floating-card fc3">CATHOLICS</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">/PROFILE</div>
+            <h2>About me.</h2>
+          </div>
+        </div>
+
+        <div class="terminal reveal">
+          <div class="terminal-top">
+            <i class="terminal-dot"></i><i class="terminal-dot"></i><i class="terminal-dot"></i>
+            <span class="terminal-title">nguyen-gia-bao.profile.json</span>
+          </div>
+          <div class="terminal-body">
+            {'{'}<br>
+            &nbsp;&nbsp;<span class="key">"name"</span>: <span class="str">"Nguyen Gia Bao"</span>,<br>
+            &nbsp;&nbsp;<span class="key">"focus"</span>: <span class="str">"God / Family / Future"</span>,<br>
+            &nbsp;&nbsp;<span class="key">"education"</span>: <span class="str">"PTIT &mdash; Computer Science"</span>,<br>
+            &nbsp;&nbsp;<span class="key">"interests"</span>: [<span class="str">"Basketball"</span>, <span class="str">"Vibe coding"</span>, <span class="str">"Hanging"</span>],<br>
+            {'}'}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">/LIFE LOG</div>
+            <h2>Daily life</h2>
+          </div>
+      
+        </div>
+
+        <div class="gallery">
+          <figure class="gallery-item full-image reveal">
+            <img src="assets/mot.jpg" alt="Circuit board">
+            <figcaption class="gallery-caption">LOVING</figcaption>
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="assets/hai.jpg" alt="Code on screen">
+            <figcaption class="gallery-caption">STILL LOVING</figcaption>
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="assets/ba.jpg" alt="Data dashboard">
+            <figcaption class="gallery-caption">SERVING</figcaption>
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="assets/bon.jpg" alt="Friends outdoors">
+            <figcaption class="gallery-caption">STUDYING</figcaption>
+          </figure>
+          <figure class="gallery-item image-bottom reveal">
+            <img src="assets/nam.jpg" alt="Team together">
+            <figcaption class="gallery-caption">EXPLORING</figcaption>
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="assets/sau.jpg" alt="Laptop and workspace">
+            <figcaption class="gallery-caption">SOCIALIZING</figcaption>
+          </figure>
+          <figure class="gallery-item image-bottom reveal">
+            <img src="assets/bay.jpg" alt="People collaborating in an office">
+            <figcaption class="gallery-caption">EXPERIENCING</figcaption>
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="assets/tam.jpg" alt="Team meeting around a table">
+            <figcaption class="gallery-caption">EARNING</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">/PROJECT LOG</div>
+            <h2>Built over time.</h2>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="project reveal">
+            <div class="project-date">2026 &mdash; NOW</div>
+            <div class="project-card">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=900&q=85" alt="Developer workspace">
+              </div>
+              <div class="project-info">
+                <div class="project-tag">DATA SYSTEM / 001</div>
+                <h3>Project Alpha</h3>
+                <p>Replace this with your strongest current data/system project. Explain the real-world problem, what you built, and what you learned.</p>
+                <div class="techs"><span class="tech">Python</span><span class="tech">SQL</span><span class="tech">Git</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-date">2026</div>
+            <div class="project-card">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85" alt="Web interface design">
+              </div>
+              <div class="project-info">
+                <div class="project-tag">WEB / 002</div>
+                <h3>Church Student System</h3>
+                <p>A practical management platform concept for students, teachers, parents, schedules, events, and community communication.</p>
+                <div class="techs"><span class="tech">HTML</span><span class="tech">CSS</span><span class="tech">JavaScript</span><span class="tech">Database</span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-date">2025</div>
+            <div class="project-card">
+              <div class="project-image">
+                <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=85" alt="Programming code">
+              </div>
+              <div class="project-info">
+                <div class="project-tag">FOUNDATION / 003</div>
+                <h3>Programming Foundations</h3>
+                <p>Your earlier C/C++ work belongs here &mdash; algorithms, data structures, small utilities, experiments, and the first steps into software engineering.</p>
+                <div class="techs"><span class="tech">C</span><span class="tech">C++</span><span class="tech">Algorithms</span></div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">/EDUCATION</div>
+            <h2>Academic journey.</h2>
+          </div>
+          
+        </div>
+
+        <div class="story-grid">
+          <!-- CARD 1: Cß║ñP 3 NH├éN CH├ìNH -->
+          <article class="story-card edu-card reveal">
+            <div class="edu-bg">
+              <img src="assets/images.jpg" alt="Highschool memory">
+            </div>
+            
+            <div class="edu-content">
+              <div class="edu-top">
+                <div class="story-num">2022 - 2025</div>
+                <!-- Vß╗ï tr├¡ Logo tr╞░ß╗¥ng -->
+                <div class="edu-logo">
+                  <!-- Bß║ín h├úy thay URL logo thß║¡t cß╗ºa tr╞░ß╗¥ng Nh├ón Ch├¡nh v├áo ─æ├óy (╞░u ti├¬n file PNG kh├┤ng nß╗ün) -->
+                  <img src="assets/images.jpg" alt="Nhan Chinh Logo">
+                </div>
+              </div>
+              
+              <div class="edu-text">
+                <h3>NHAN CHINH HIGHSCHOOL</h3>
+                <p>
+                  GPA 9.12 <br> First time taking IELTS
+                </p>
+              </div>
+            </div>
+          </article>
+    
+          <!-- CARD 2: ─Éß║áI Hß╗îC PTIT -->
+          <article class="story-card edu-card reveal">
+            <!-- H├¼nh nß╗ün s├íng tß║ío -->
+            <div class="edu-bg">
+              <img src="assets/Thumbnail-ptit.jpg" alt="PTIT campus" />
+            </div>
+            
+            <div class="edu-content">
+              <div class="edu-top">
+                <div class="story-num">2025 - Now</div>
+                <!-- Vß╗ï tr├¡ Logo tr╞░ß╗¥ng -->
+                <div class="edu-logo">
+                  <!-- Bß║ín h├úy thay URL logo thß║¡t cß╗ºa PTIT v├áo ─æ├óy (╞░u ti├¬n file PNG kh├┤ng nß╗ün) -->
+                  <img src="assets/Logo_PTIT_University.png" alt="PTIT Logo">
+                </div>
+              </div>
+              
+              <div class="edu-text">
+                <h3>POSTS AND TELECOMMUNICATION INSTITUTE OF TECHNOLOGY</h3>
+                <p>
+                  Computer Science<br>CPA 3.61
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="languages">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="section-label">/LANGUAGES</div>
+            <h2>Communication stack.</h2>
+          </div>
+        </div>
+
+        <div class="languages">
+          <div class="lang reveal"><span class="lang-code">VI</span><h3>Vietnamese</h3><p>Native</p><div class="bar"><span style="width:100%"></span></div></div>
+          <div class="lang reveal"><span class="lang-code">EN</span><h3>English</h3><p>IELTS 7.0</p><div class="bar"><span style="width:82%"></span></div></div>
+          <div class="lang reveal"><span class="lang-code">JP</span><h3>Japanese</h3><p>Currently preparing for N5</p><div class="bar"><span style="width:38%"></span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container reveal">
+        <div class="section-label">/CONTACT</div>
+        <h2>Let's build something<br><span class="accent">worth remembering.</span></h2>
+        <p class="contact-sub">Feel free to reach out!</p>
+
+        <div class="contact-links">
+          <!-- Replace the # values with your real profiles. -->
+          <a class="contact-link" href="https://github.com/ngb2604" target="_blank" rel="noopener" aria-label="GitHub profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.49.998.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            GITHUB
+          </a>
+          <a class="contact-link" href="https://www.facebook.com/ngb2604/" target="_blank" rel="noopener" aria-label="Facebook profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.973h-1.514c-1.491 0-1.956.93-1.956 1.887v2.26h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073"/></svg>
+            FACEBOOK
+          </a>
+          <a class="contact-link" href="https://www.instagram.com/bvro.ngxn/" target="_blank" rel="noopener" aria-label="Instagram profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2m-.2 2A3.55 3.55 0 0 0 4 7.55v8.9A3.55 3.55 0 0 0 7.55 20h8.9A3.55 3.55 0 0 0 20 16.45v-8.9A3.55 3.55 0 0 0 16.45 4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6m5.25-3.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5"/></svg>
+            INSTAGRAM
+          </a>
+          <a class="contact-link" href="ngb2604@gmail.com" aria-label="Send an email">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m0 4-8 5-8-5V6l8 5 8-5z"/></svg>
+            GMAIL
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  
+  <script src="../scripts/site.ts"></script>
+</body>
+</html>
